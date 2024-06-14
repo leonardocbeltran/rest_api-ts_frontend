@@ -62,7 +62,7 @@ export const getProductById = async (id: Product['id']) => {
 export const editProduct = async (data: ProductData, id: Product['id']) => {
     try {
         const result = safeParse(ProductSchema, {
-            id: +id,
+            id,
             name: data.name,
             price:  +data.price,
             availability: toBoolean(data.availability.toString())
@@ -100,5 +100,4 @@ export const updateAvailability = async (id: Product['id']) => {
     } catch (error) {
         console.log(error)
     }
-    console.log('desde update availability')
 }

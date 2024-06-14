@@ -9,9 +9,14 @@ type ProductDetailProps = {
 }
 
 export const action = async ({params} : ActionFunctionArgs) => {
-    if(params !== undefined){
-        await deleteProduct(params.id)
-        return redirect('/')    
+    if(params !== undefined && params?.id){
+        const idProduct = Number(params.id)
+        if(!isNaN(idProduct)){
+        await deleteProduct(idProduct)
+        return redirect('/') 
+        }   
+    }else{
+        return redirect('/')
     }
 }
 

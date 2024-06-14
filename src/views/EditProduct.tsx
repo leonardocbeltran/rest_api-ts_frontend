@@ -32,11 +32,30 @@ export const action = async ({request, params} : ActionFunctionArgs) => {
         return error
     }
 
-    if(params !== undefined){
-        await editProduct(data, params.id)
-        return redirect('/')    
+    /*
+    if (params?.id) {  // Verifica si params.id está definido
+        const idProduct = Number(params.id)  // Convierte params.id a número de forma segura
+        if (!isNaN(idProduct)) {  // Verifica si la conversión fue exitosa
+            await editProduct(data, idProduct)
+            return redirect('/') // Redirige al usuario a la página principal
+        } else {
+            console.error("El ID del producto no es un número válido")
+        }
+    } else {
+        console.error("El ID del producto no está definido")
     }
+        */
 
+    if(params !== undefined && params?.id){
+        const idProduct = Number(params.id)
+        if (!isNaN(idProduct)) {
+            await editProduct(data, +params.id)
+            return redirect('/')
+        }
+    }else{
+        return redirect('/')
+    }
+            
 }
 
 

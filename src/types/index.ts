@@ -14,10 +14,10 @@ export const ProductSchema = object({
 
 export const ProductsSchema = array(ProductSchema)
 export type Product = {
-    availability: boolean;
-    id: number;
-    name: string;
-    price: number;
+    availability: boolean
+    id: number
+    name: string
+    price: number
 }
 
 //export type Product = TypeOf<typeof ProductSchema>
